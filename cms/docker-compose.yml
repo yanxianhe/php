@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  web:
+    image: cms:v1.0
+    #image: php:8.1.4-fpm
+    volumes:
+      - /home/ssy/Downloads/cms:/usr/share/nginx/html
+      - /etc/localtime:/etc/localtime:ro
+#    ports:
+#      - 80:80
+#      - 443:443
+  nginx:
+    image: nginx:latest
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/nginx/ca/server.crt:/etc/ssl/certs/server.crt
+      - /opt/nginx/ca/server.key:/etc/ssl/private/server.key
+      - /home/ssy/Downloads/cms:/usr/share/nginx/html
+      - /opt/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /home/ssy/Downloads/cms/conf.d:/etc/nginx/conf.d
+    ports:
+      - 8080:80
+      - 4443:443
