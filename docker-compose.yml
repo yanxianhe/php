@@ -1,0 +1,39 @@
+version: '3.4'
+services:
+  mysql:
+    hostname: mysql
+    image: mysql:5.7.29
+    container_name: jsmysql # 指定容器名称，如果不设置此参数，则由系统自动生成
+    restart: always # 设置容器自启模式
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --explicit_defaults_for_timestamp=true --lower_case_table_names=1  # 设置utf8字符集
+    environment:
+      - TZ=Asia/Shanghai # 设置容器时区与宿主机保持一致
+      - MYSQL_ROOT_PASSWORD=root # 设置root密码
+    volumes:
+       - /etc/localtime:/etc/localtime:ro # 设置容器时区与宿主机保持一致
+       - /opt/db/mysql/:/var/lib/mysql # 映射数据库保存目录到宿主机，防止数据丢失
+  web:
+    hostname: web
+    image: cms:v1.0
+    #image: php:8.1.4-fpm
+    container_name: jsphp # 指定容器名称，如果不设置此参数，则由系统自动生成
+    restart: always # 设置容器自启模式
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/www/cms:/usr/share/nginx/html
+#    ports:
+#      - 80:80
+#      - 443:443
+  nginx:
+    hostname: nginx
+    image: nginx:latest
+    container_name: jsweb # 指定容器名称，如果不设置此参数，则由系统自动生成
+    restart: always # 设置容器自启模式
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/www/cms:/usr/share/nginx/html
+      - /opt/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /opt/www/cms/conf.d:/etc/nginx/conf.d
+    ports:
+      - 80:80
+      - 443:443
