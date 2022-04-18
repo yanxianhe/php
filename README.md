@@ -1,5 +1,4 @@
-# php
-
+# PHP　cms docker docker-compose 部署
 ~~~~~~
 php 7.2 +
 mysql:5.7.x +
