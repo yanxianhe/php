@@ -20,7 +20,7 @@ services:
     restart: always # 设置容器自启模式
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /opt/www/cms:/usr/share/nginx/html
+      - /opt/www/cms:/usr/share/nginx/html #与nginx 目录保持一致
 #    ports:
 #      - 80:80
 #      - 443:443
