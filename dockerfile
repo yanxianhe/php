@@ -1,6 +1,6 @@
 FROM php:7.3.33-fpm
 
-LABEL maintainer yan xianhe <xianhe_yan@sina.com>
+LABEL maintainer="yan xianhe <xianhe_yan@sina.com>"
 
 RUN sed -i 's#http://deb.debian.org/debian#http://mirrors.aliyun.com/debian#g' /etc/apt/sources.list
 RUN sed -i 's#http://security.debian.org/debian-security#http://mirrors.aliyun.com/debian-security#g' /etc/apt/sources.list
