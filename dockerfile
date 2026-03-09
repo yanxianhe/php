@@ -1,6 +1,6 @@
 FROM php:8.1.4-fpm
 
-LABEL maintainer yan xianhe <xianhe_yan@sina.com>
+LABEL maintainer="yan xianhe <xianhe_yan@sina.com>"
 
 
 RUN sed -i 's#http://deb.debian.org/debian#http://mirrors.aliyun.com/debian#g' /etc/apt/sources.list
